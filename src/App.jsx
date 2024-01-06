@@ -98,9 +98,23 @@ function App() {
         }
       }
     }
+
+    for (let j= 0; j<= COLUMNS - WINNING_LENGTH; j++){
+      for (let i= ROWS - 1; i >= WINNING_LENGTH - 1; i--){
+        const diagonal = []
+        for (let k = 0; k < WINNING_LENGTH; k++){
+          diagonal.push(board[(i - k) * COLUMNS + j + k])
+        }
+        const diagonalWinner = checkLine(diagonal)
+        if (diagonalWinner){
+          return diagonalWinner
+        }
+      }
+    }
   
     return null; // No hay ganador
   }
+  
   
 const resetGame =()=>{
   setBoard(Array(42).fill(null))
